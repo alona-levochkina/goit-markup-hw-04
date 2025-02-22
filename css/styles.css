@@ -56,6 +56,8 @@ img {
 
 .page-header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 
 .header-container {
@@ -108,6 +110,23 @@ img {
   padding-top: 24px;
   padding-bottom: 24px;
   display: block;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-nav-link.current {
+  position: relative;
+  color: #404bbf;
+}
+
+.page-nav-link.current::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  left: 0;
+  bottom: -1px;
+  border-radius: 2px;
+  background-color: #4d5ae5;
 }
 
 .page-nav-link:hover,
@@ -139,6 +158,7 @@ img {
   text-decoration: none;
   padding-top: 24px;
   padding-bottom: 24px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page-nav-address-link:hover,
@@ -155,6 +175,15 @@ img {
 .main-page {
   background-color: #2e2f42;
   padding: 188px 0;
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url(../images/people-office.jpg);
+  max-width: 1440px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .main-page-title {
@@ -191,6 +220,7 @@ img {
   cursor: pointer;
   border-radius: 4px;
   padding: 16px 32px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .main-page-button:hover,
@@ -214,6 +244,17 @@ img {
 .content-item {
   width: calc((100% - 24px * 3) / 4);
   border-radius: 0 0 4px 4px;
+}
+
+.content-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
+  background-color: #f4f4fd;
+  border-radius: 4px;
+  border: 1px solid #8e8f99;
+  margin-bottom: 8px;
 }
 
 .content-page-title {
@@ -244,6 +285,8 @@ img {
 .page-team-list {
   background-color: #ffffff;
   border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 1px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 1px 6px 0 rgba(46, 47, 66, 0.08);
 }
 
 .page-team-head {
@@ -259,8 +302,13 @@ img {
 
 .team-list {
   display: flex;
+  justify-content: center;
   gap: 24px;
   flex-basis: calc((100% - 24px * 3) / 4);
+}
+
+.container-team {
+  padding: 32px 0;
 }
 
 .page-team-title {
@@ -282,8 +330,35 @@ img {
   color: #434455;
 }
 
-.container-team {
-  padding: 32px 0;
+.social-list {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 32px;
+}
+
+.social-link a {
+  width: 100%;
+  height: 100%;
+  background-color: #4d5ae5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link a:hover,
+.social-link a:focus {
+  background-color: #404bbf;
+}
+
+.social-icons {
+  fill: #f4f4fd;
 }
 
 /* portfolio section */
@@ -315,7 +390,47 @@ img {
 
 .portfolio-list {
   width: calc((100% - 48px) / 3);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.portfolio-list:hover,
+.portfolio-list:focus {
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.portfolio-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 32px 40px;
+  background-color: #4d5ae5;
+  height: 100%;
+  width: 100%;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-list:hover .overlay,
+.portfolio-list:focus .overlay {
+  transform: translateY(0);
+}
+
 .page-portfolio-title {
   font-weight: 500;
   font-size: 20px;
@@ -351,7 +466,16 @@ img {
   margin-bottom: 16px;
 }
 
-.footer-page-logo {
+.footer-wrapper {
+  display: flex;
+  align-items: baseline;
+}
+
+.footer-logo-wrapper {
+  margin-right: 120px;
+}
+
+.footer-logo {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -362,7 +486,7 @@ img {
   text-decoration: none;
 }
 
-.footer-page-accent {
+.footer-accent {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -372,11 +496,50 @@ img {
   color: #f4f4fd;
 }
 
-.footer-page-text {
+.footer-text {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #f4f4fd;
   max-width: 264px;
+}
+
+.footer-social-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.footer-social-list {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-social-link {
+  width: 40px;
+  height: 40px;
+}
+
+.footer-social-link a {
+  width: 100%;
+  height: 100%;
+  background-color: #4d5ae5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-social-link a:hover,
+.footer-social-link a:focus {
+  background-color: #31d0aa;
+}
+
+.footer-social-icons {
+  fill: #f4f4fd;
 }
